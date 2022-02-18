@@ -8,4 +8,11 @@
     <string name="bt_text_reg">registration</string>
     <string name="login_logo">Login_logo</string>
     <string name="bt_text_forgot_your_password">Forgot your password?</string>
+    <string name="tv_label_lastname">lastname</string>
+    <string name="tv_label_firstname">firstname</string>
+    <string name="tv_label_email">email</string>
+    <string name="tv_label_phone">phone</string>
+    <string name="tv_label_nickname">nickname</string>
+    <string name="bt_update">update</string>
+    <string name="avatar_in_profile">avatar in profile</string>
 </resources>
