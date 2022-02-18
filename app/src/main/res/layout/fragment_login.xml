@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".presentation.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        tools:src="@drawable/logo"
+        android:contentDescription="@string/login_logo" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tv_welcome"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/text_size_logo" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ed_hint_login"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_color_hint"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ed_hint_password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/text_color_hint"
+        android:textColor="@color/white"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_700"
+        android:text="@string/ed_hint_login"
+        android:textColor="@color/white" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center|top"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/btReg"
+            android:layout_width="@dimen/btreg_center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/bt_text_reg"
+            android:textColor="@color/text_color_hint" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/btResPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/bt_text_forgot_your_password"
+            android:textColor="@color/text_color_hint" />
+    </LinearLayout>
+</LinearLayout>

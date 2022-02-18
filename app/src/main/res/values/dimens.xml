@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_logo">24sp</dimen>
+    <dimen name="indent_from_margins">20dp</dimen>
+    <dimen name="size_img_or_lang">150dp</dimen>
+    <dimen name="btreg_center">180dp</dimen>
+</resources>

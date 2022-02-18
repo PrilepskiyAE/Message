@@ -2,4 +2,10 @@
     <string name="app_name">Message</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_welcome">Welcome</string>
+    <string name="ed_hint_login">Login</string>
+    <string name="ed_hint_password">Password</string>
+    <string name="bt_text_reg">registration</string>
+    <string name="login_logo">Login_logo</string>
+    <string name="bt_text_forgot_your_password">Forgot your password?</string>
 </resources>
