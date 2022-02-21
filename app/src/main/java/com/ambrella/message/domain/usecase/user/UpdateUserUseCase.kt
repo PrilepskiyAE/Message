@@ -5,7 +5,7 @@ import com.ambrella.message.domain.repository.UserRepository
 
 class UpdateUserUseCase(val userRepository: UserRepository) {
 
-    fun exec(user:User){
+    suspend fun exec(user:User){
         userRepository.updateUser(user)
     }
 

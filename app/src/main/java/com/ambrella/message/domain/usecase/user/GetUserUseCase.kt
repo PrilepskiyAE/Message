@@ -5,7 +5,7 @@ import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
 
 class GetUserUseCase(val userRepository: UserRepository) {
-    fun exec():LiveData<User>{
-        return userRepository.getUser()
+     fun exec(id:Int):User{
+        return userRepository.getUser(id)
     }
 }
