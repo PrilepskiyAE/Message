@@ -10,4 +10,5 @@ interface UserRepository {
      fun getListUser():LiveData<List<User>>
      fun getUser(id:Int):User
     suspend fun updateUser(user: User)
+    fun searchUsers(username: String):LiveData<List<User>>
 }

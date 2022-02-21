@@ -21,4 +21,6 @@ interface DaoUser {
 
     @Query("SELECT * FROM tuser WHERE id IN (:itemIds)")
     fun getUser(itemIds: Int):UserDB
+    @Query("SELECT * FROM tuser WHERE username IN(:userName)")//TODO Подумаю LIMIT = 1 или поиск в выборке
+    fun searchUser(userName:String):LiveData<List<UserDB>>
 }

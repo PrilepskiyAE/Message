@@ -38,4 +38,8 @@ class UserRepositoryImp(context:Context):UserRepository {
     override suspend fun updateUser(user: User) {
         daoUser.updateUser(mapper.mapEntityToDbModel(user))
     }
+
+    override fun searchUsers(username: String)= Transformations.map(daoUser.searchUser(username)){
+        mapper.mapListDbModelToListEntity(it)
+    }
 }
