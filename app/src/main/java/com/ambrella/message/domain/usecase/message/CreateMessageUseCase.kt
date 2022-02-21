@@ -1,4 +1,7 @@
 package com.ambrella.message.domain.usecase.message
 
-class CreateMessageUseCase {
+class CreateMessageUseCase() {
+    fun exec(){
+
+    }
 }

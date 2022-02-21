@@ -1,4 +1,12 @@
 package com.ambrella.message.domain.usecase.user
 
-class UpdateUserUseCase {
+import com.ambrella.message.domain.entity.User
+import com.ambrella.message.domain.repository.UserRepository
+
+class UpdateUserUseCase(val userRepository: UserRepository) {
+
+    fun exec(user:User){
+        userRepository.updateUser(user)
+    }
+
 }
