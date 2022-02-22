@@ -1,8 +1,6 @@
 package com.ambrella.message.data.repository
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.ambrella.message.data.db.DaoUser
 import com.ambrella.message.data.db.MapperUser
 import com.ambrella.message.data.db.RoomDatabaseMessage
@@ -26,11 +24,10 @@ class UserRepositoryImp(context:Context):UserRepository {
         daoUser.deleteUser(mapper.mapEntityToDbModel(user))
     }
 
-    override  fun getListUser(): LiveData<List<User>> = Transformations.map(daoUser.getUserList()){
-        mapper.mapListDbModelToListEntity(it)
-    }
+    override suspend fun getListUser(): List<User> = mapper.mapListDbModelToListEntity(daoUser.getUserList())
 
-    override fun getUser(id:Int): User {
+
+    override suspend fun getUser(id:Int): User {
         val el=daoUser.getUser(id)
         return mapper.mapDbModelToEntity(el)
     }
@@ -39,7 +36,5 @@ class UserRepositoryImp(context:Context):UserRepository {
         daoUser.updateUser(mapper.mapEntityToDbModel(user))
     }
 
-    override fun searchUsers(username: String)= Transformations.map(daoUser.searchUser(username)){
-        mapper.mapListDbModelToListEntity(it)
-    }
+    override suspend fun searchUsers(username: String)= mapper.mapListDbModelToListEntity(daoUser.searchUser(username))
 }

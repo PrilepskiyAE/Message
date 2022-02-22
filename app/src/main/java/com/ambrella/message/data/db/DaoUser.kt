@@ -17,10 +17,11 @@ interface DaoUser {
     suspend fun updateUser(userDB: UserDB)
 
     @Query("SELECT * FROM tuser")
-    fun getUserList():LiveData<List<UserDB>>
+    suspend fun getUserList(): List<UserDB>
 
     @Query("SELECT * FROM tuser WHERE id IN (:itemIds)")
-    fun getUser(itemIds: Int):UserDB
+    suspend fun getUser(itemIds: Int): UserDB
+
     @Query("SELECT * FROM tuser WHERE username IN(:userName)")//TODO Подумаю LIMIT = 1 или поиск в выборке
-    fun searchUser(userName:String):LiveData<List<UserDB>>
+    suspend fun searchUser(userName:String):List<UserDB>
 }

@@ -9,4 +9,7 @@
     <string name="remember_me">remember me</string>
     <string name="forgo_password">Forgo password?</string>
     <string name="login">login</string>
+    <string name="create_user">учетная запись успешно создана</string>
+    <string name="user_check">Авторизация прошла успешно</string>
+    <string name="password_error">Неверный пароль</string>
 </resources>

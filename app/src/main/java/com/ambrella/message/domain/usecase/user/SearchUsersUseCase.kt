@@ -1,11 +1,10 @@
 package com.ambrella.message.domain.usecase.user
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
+import com.ambrella.message.presentation.login.TAG
 
 class SearchUsersUseCase(val userRepository: UserRepository) {
-    fun exec(username:String): LiveData<List<User>> {
-        return userRepository.searchUsers(username)
-    }
+    suspend fun exec(username:String): List<User> = userRepository.searchUsers(username)
 }
