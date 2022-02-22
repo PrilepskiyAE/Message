@@ -10,7 +10,9 @@ import com.ambrella.message.domain.repository.UserRepository
 import com.ambrella.message.domain.usecase.user.CreateUserUseCase
 import com.ambrella.message.domain.usecase.user.GetListUsersUseCase
 import com.ambrella.message.domain.usecase.user.SearchUsersUseCase
+import com.ambrella.message.presentation.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
@@ -23,7 +25,7 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     val usersList: LiveData<List<User>>
         get() = _usersList
 
-    private val _searchedUsersList = MutableLiveData<List<User>>()
+    private val _searchedUsersList = SingleLiveEvent<List<User>>()
     val searchedUsersList: LiveData<List<User>>
         get() = _searchedUsersList
 
@@ -39,8 +41,8 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun searchUsers(username: String) {
-        viewModelScope.launch(IO) {
-            _searchedUsersList.postValue(searchUsersUseCase.exec(username))
+        viewModelScope.launch {
+            _searchedUsersList.value = async { searchUsersUseCase.exec(username) }.await()
         }
     }
 }
