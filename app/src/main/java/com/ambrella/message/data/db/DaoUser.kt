@@ -7,7 +7,7 @@ import com.ambrella.message.data.entity.UserDB
 @Dao
 interface DaoUser {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(userDB: UserDB)
 
     @Delete

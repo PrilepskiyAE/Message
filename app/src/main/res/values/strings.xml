@@ -12,4 +12,7 @@
     <string name="create_user">учетная запись успешно создана</string>
     <string name="user_check">Авторизация прошла успешно</string>
     <string name="password_error">Неверный пароль</string>
+    <string name="testing">\"2 бла бла бла \"</string>
+    <string name="reset_btn">RESET</string>
+    <string name="fill_in_the_fields">Заполни поля</string>
 </resources>

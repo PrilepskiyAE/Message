@@ -6,15 +6,14 @@ import com.ambrella.message.data.db.MapperUser
 import com.ambrella.message.data.db.RoomDatabaseMessage
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
+import javax.inject.Inject
 
-class UserRepositoryImp(context:Context):UserRepository {
+class UserRepositoryImpl @Inject constructor(db:RoomDatabaseMessage):UserRepository {
     private val mapper=MapperUser()
 
-    private val daoUser: DaoUser
-    init {
-        val database = RoomDatabaseMessage.getInstance(context)
-        daoUser = database.daoUser()
-    }
+    private val daoUser: DaoUser=db.daoUser()
+
+
 
     override suspend fun createUser(user: User) {
         daoUser.insertUser(mapper.mapEntityToDbModel(user))

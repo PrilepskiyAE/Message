@@ -3,6 +3,7 @@
     package="com.ambrella.message">
 
     <application
+        android:name=".Message"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

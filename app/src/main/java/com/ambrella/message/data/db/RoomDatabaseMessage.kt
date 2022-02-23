@@ -13,17 +13,17 @@ import java.lang.RuntimeException
 abstract class RoomDatabaseMessage: RoomDatabase() {
     abstract fun daoUser():DaoUser
     companion object{
-        const val VERSION_SCHEMA=1
-        private var INSTANCE:RoomDatabaseMessage?=null
-        fun getInstance(context: Context):RoomDatabaseMessage
-        {
-            if (INSTANCE==null){
-                synchronized(RoomDatabaseMessage::class){
-                    INSTANCE= Room.databaseBuilder(context,RoomDatabaseMessage::class.java,"MessageDB").build()
-                }
-            }
-            return INSTANCE ?: throw RuntimeException("error : DB init")
-        }
+       const val VERSION_SCHEMA=1
+//        private var INSTANCE:RoomDatabaseMessage?=null
+//        fun getInstance(context: Context):RoomDatabaseMessage
+//        {
+//            if (INSTANCE==null){
+//                synchronized(RoomDatabaseMessage::class){
+//                    INSTANCE= Room.databaseBuilder(context,RoomDatabaseMessage::class.java,"MessageDB").build()
+//                }
+//            }
+//            return INSTANCE ?: throw RuntimeException("error : DB init")
+//        }
     }
 
 
