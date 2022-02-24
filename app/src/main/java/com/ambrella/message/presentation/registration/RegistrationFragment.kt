@@ -6,26 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ambrella.message.R
+import com.ambrella.message.databinding.FragmentLoginBinding
+import com.ambrella.message.databinding.FragmentRegistrationBinding
+import com.ambrella.message.presentation.MainActivity
+import com.ambrella.message.presentation.base.BaseFragment
 
 
-class RegistrationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
+class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
+    override fun getBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentRegistrationBinding {
+        return FragmentRegistrationBinding.inflate(layoutInflater,container,false)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        MainActivity.inVisible(true)
     }
 
 
-    }
+}

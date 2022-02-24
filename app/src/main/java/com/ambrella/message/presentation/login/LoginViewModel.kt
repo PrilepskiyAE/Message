@@ -14,6 +14,7 @@ import com.ambrella.message.domain.usecase.user.CreateUserUseCase
 import com.ambrella.message.domain.usecase.user.GetListUsersUseCase
 import com.ambrella.message.domain.usecase.user.SearchUsersUseCase
 import com.ambrella.message.presentation.SingleLiveEvent
+import com.ambrella.message.presentation.base.BaseFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -47,6 +48,7 @@ class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel
                 )
             )
         }
+
     }
 
     @SuppressLint("NullSafeMutableLiveData")

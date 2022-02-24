@@ -15,4 +15,7 @@
     <string name="testing">\"2 бла бла бла \"</string>
     <string name="reset_btn">RESET</string>
     <string name="fill_in_the_fields">Заполни поля</string>
+    <string name="account_settings">account settings</string>
+    <string name="contact">Contact</string>
+    <string name="messages">Messages</string>
 </resources>

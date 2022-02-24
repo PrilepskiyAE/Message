@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/registrationFragment"
+        android:title="@string/account_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/userListFragment"
+        android:title="@string/contact"
+        android:enabled="true"
+        android:icon="@drawable/ic_contact"/>
+
+    <item
+        android:id="@+id/chatFragment"
+        android:title="@string/messages"
+        android:enabled="true"
+        android:icon="@drawable/ic_message"/>
+
+</menu>

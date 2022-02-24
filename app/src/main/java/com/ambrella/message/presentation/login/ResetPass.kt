@@ -36,7 +36,7 @@ class ResetPass:  DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.button.setOnClickListener {
+        mBinding.btUpdate.setOnClickListener {
             Log.d("TAG", "onViewCreated: ")
             if (!(mBinding.editPersonName.text.toString().trim().isNotEmpty()) || !(mBinding.editPersonName.text.toString().trim().isNotEmpty()))
             {
