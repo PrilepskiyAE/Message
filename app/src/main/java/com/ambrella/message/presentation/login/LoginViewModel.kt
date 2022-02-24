@@ -26,14 +26,14 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel() {
     private val createUserUseCase = CreateUserUseCase(repository)
-    private val getListUsersUseCase = GetListUsersUseCase(repository)
+   // private val getListUsersUseCase = GetListUsersUseCase(repository)
     private val searchUsersUseCase = SearchUsersUseCase(repository)
 
 
 
-    private val _usersList = MutableLiveData<List<User>>()
-    val usersList: LiveData<List<User>>
-        get() = _usersList
+//    private val _usersList = MutableLiveData<List<User>>()
+//    val usersList: LiveData<List<User>>
+//        get() = _usersList
 
     private val _searchedUsersList = SingleLiveEvent<List<User>>()
     val searchedUsersList: LiveData<List<User>>
