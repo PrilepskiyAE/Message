@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ambrella.message.R
@@ -12,12 +13,15 @@ import com.ambrella.message.domain.entity.User
 
 class ContactListAdapter : RecyclerView.Adapter<UserViewHolder>() {
 //class ContactListAdapter : ListAdapter<User, UserViewHolder>(ContactListDiffCallback()) {
-
+  //  val count=0
     private var users: List<User> = listOf()
     set(value) {
-        field=value
-        notifyDataSetChanged()
-    }
+      val callback=ContactListDiffCallback(users,value)
+       val diffResult=DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
+       field=value
+    //    notifyDataSetChanged()
+   }
     var onUserClickLisener: OnUserClickLisener? = null
 
     interface OnUserClickLisener {

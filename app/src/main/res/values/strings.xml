@@ -18,4 +18,6 @@
     <string name="account_settings">account settings</string>
     <string name="contact">Contact</string>
     <string name="messages">Messages</string>
+    <string name="status">STATUS</string>
+    <string name="update_reg">Update</string>
 </resources>

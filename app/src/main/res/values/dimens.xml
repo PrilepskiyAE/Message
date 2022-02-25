@@ -23,4 +23,8 @@
     <dimen name="btn_text_size">24sp</dimen>
     <dimen name="img_width_land">199dp</dimen>
     <dimen name="img_height_lang">113dp</dimen>
+    <dimen name="img_avatar_reg">140dp</dimen>
+    <dimen name="top_Img_Avatar_reg">52dp</dimen>
+    <dimen name="bottom_Img_Avatar_reg">61dp</dimen>
+    <dimen name="card_margin_top_reg">60dp</dimen>
 </resources>

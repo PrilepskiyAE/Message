@@ -42,10 +42,8 @@ class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel
     fun createUser(username: String, password: String) {
         viewModelScope.launch(IO) {
             createUserUseCase.exec(
-                User(
-                    username = username,
-                    password = password
-                )
+                     username,
+                     password
             )
         }
 
