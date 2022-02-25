@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import com.ambrella.message.R
 import com.ambrella.message.databinding.FragmentLoginBinding
 import com.ambrella.message.databinding.ResetPassBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResetPass:  DialogFragment() {
     private val loginViewModel: LoginViewModel by viewModels()
     private var _binding: ResetPassBinding? = null
@@ -45,7 +47,7 @@ class ResetPass:  DialogFragment() {
             else{
                 Toast.makeText(requireContext(), "Пароль успешно изменен", Toast.LENGTH_SHORT).show()
                 loginViewModel.createUser(mBinding.editPersonName.text.toString(),mBinding.editpassword.text.toString())
-                //dismiss() //TODO подумаю как его закрыть
+                dismiss() //TODO подумаю как его закрыть
         }
         }
     }
