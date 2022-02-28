@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.ViewBinding
 import com.ambrella.message.R
 import com.ambrella.message.presentation.MainActivity
+import com.ambrella.message.presentation.navButton
 
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
     lateinit var  navController:NavController
+
     private var _binding:T?=null
     val mBinding:T
         get() = _binding?: throw NullPointerException("Erorr Binding!!!")
@@ -32,15 +36,27 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+         navController = Navigation.findNavController(requireView())
+
+        navButton.setupWithNavController(navController)
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding=null
     }
 
         fun navigate( nav:Int ){
-            val navController = Navigation.findNavController(requireView())
-            MainActivity.navigateSetup(navController)
+           // val navController = Navigation.findNavController(requireView())
+           // MainActivity.navigateSetup(navController)
             navController.navigate(nav)
         }
+    fun inVisible(invis:Boolean)
+      {
+          navButton.isVisible=invis
+       }
     }
 

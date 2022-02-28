@@ -31,22 +31,27 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter= ContactListAdapter()
+        mBinding.rcContacr.recycledViewPool.setMaxRecycledViews(R.layout.item_contact,ContactListAdapter.MAX_POOL_SIZE)
+
         userListViewModel.getUsers()
         mBinding.rcContacr.adapter=adapter
         Log.d("TAG", "onViewCreated: t")
         userListViewModel.usersList.observe(viewLifecycleOwner){
             Log.d("TAG", "onViewCreated: $it")
-            adapter.setUser(it)
+            adapter.submitList(it)
 
         }
 
-        adapter.onUserClickLisener=object : ContactListAdapter.OnUserClickLisener
-        {
-            override fun onUserClick(user: User) {
-
-                Toast.makeText(requireContext(), "${user.id}", Toast.LENGTH_SHORT).show()
-            }
-
+//        adapter.onUserClickLisener=object : ContactListAdapter.OnUserClickLisener
+//        {
+//            override fun onUserClick(user: User) {
+//
+//               // Toast.makeText(requireContext(), "${user.id}", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
+        adapter.onUserClickLisener={
+            Log.d("test", it.toString())
         }
     }
 }

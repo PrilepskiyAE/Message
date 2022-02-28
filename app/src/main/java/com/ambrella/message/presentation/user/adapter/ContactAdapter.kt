@@ -11,52 +11,70 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ambrella.message.R
 import com.ambrella.message.domain.entity.User
 
-class ContactListAdapter : RecyclerView.Adapter<UserViewHolder>() {
-//class ContactListAdapter : ListAdapter<User, UserViewHolder>(ContactListDiffCallback()) {
-  //  val count=0
-    private var users: List<User> = listOf()
-    set(value) {
-      val callback=ContactListDiffCallback(users,value)
-       val diffResult=DiffUtil.calculateDiff(callback)
-        diffResult.dispatchUpdatesTo(this)
-       field=value
+//class ContactListAdapter : RecyclerView.Adapter<UserViewHolder>() {
+class ContactListAdapter : ListAdapter<User, UserViewHolder>(ContactItemDiffCallback()) {
+    //  val count=0
+    // private var users: List<User> = listOf()
+    //set(value) {
+    //val callback=ContactListDiffCallback(users,value)
+    //  val diffResult=DiffUtil.calculateDiff(callback)
+    //   diffResult.dispatchUpdatesTo(this)
+    //   field=value
     //    notifyDataSetChanged()
-   }
-    var onUserClickLisener: OnUserClickLisener? = null
-
-    interface OnUserClickLisener {
-        fun onUserClick(user: User)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false)
         return UserViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val quote = users.get(position)
-        holder.init(quote)
+        val user = getItem(position)
+
         holder.itemView.setOnClickListener {
-            onUserClickLisener?.onUserClick(quote)
+            onUserClickLisener?.invoke(user)
+
         }
     }
-
-    fun setUser(t: List<User>) {
-        this.users = t
-    }
-
-    fun isEmpty(): Boolean {
-        return users.isEmpty()
-    }
-
-    fun getUser(pos: Int): User {
-        return users[pos]
-    }
-
-    override fun getItemCount(): Int {
-        return users.size
+    //var onUserClickLisener: OnUserClickLisener? = null
+    var onUserClickLisener: ((User) -> Unit)? = null
+//    interface OnUserClickLisener {
+//        fun onUserClick(user: User)
+//    }
+    companion object{
+    const val MAX_POOL_SIZE = 30
     }
 }
+
+
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+//        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false)
+//        return UserViewHolder(view)
+//    }
+//
+//    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+//        val quote = getItem(position)
+//        holder.init(quote)
+//        holder.itemView.setOnClickListener {
+//            onUserClickLisener?.onUserClick(quote)
+//        }
+//    }
+//
+//    fun setUser(t: List<User>) {
+//        this.users = t
+//    }
+//
+//    fun isEmpty(): Boolean {
+//        return users.isEmpty()
+//    }
+//
+//    fun getUser(pos: Int): User {
+//        return users[pos]
+//    }
+//
+//    override fun getItemCount(): Int {
+//        return users.size
+//    }
+
+
 
 class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var mTitle: TextView? = null

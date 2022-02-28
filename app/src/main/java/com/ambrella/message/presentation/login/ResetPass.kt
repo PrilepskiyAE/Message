@@ -42,7 +42,10 @@ class ResetPass:  DialogFragment() {
             Log.d("TAG", "onViewCreated: ")
             if (!(mBinding.editPersonName.text.toString().trim().isNotEmpty()) || !(mBinding.editPersonName.text.toString().trim().isNotEmpty()))
             {
-                Toast.makeText(requireContext(), getString(R.string.fill_in_the_fields), Toast.LENGTH_SHORT).show()
+               context?.let {
+                   Toast.makeText(it, getString(R.string.fill_in_the_fields), Toast.LENGTH_SHORT).show()
+               }
+
             }
             else{
                 Toast.makeText(requireContext(), "Пароль успешно изменен", Toast.LENGTH_SHORT).show()

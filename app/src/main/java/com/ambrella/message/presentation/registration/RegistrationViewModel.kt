@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegistrationViewModel@Inject constructor(repository: UserRepository): ViewModel() {
-    private val updateUserUseCase=UpdateUserUseCase(repository)
+class RegistrationViewModel@Inject constructor(): ViewModel() {
+  @Inject  lateinit var updateUserUseCase:UpdateUserUseCase
 
     fun update(id:Int,username: String,password:String,resId:String)
     {

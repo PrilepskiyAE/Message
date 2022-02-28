@@ -24,10 +24,10 @@ import java.security.AccessControlContext
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel() {
-    private val createUserUseCase = CreateUserUseCase(repository)
+class LoginViewModel @Inject constructor() : ViewModel() {
+   @Inject lateinit var  createUserUseCase : CreateUserUseCase
    // private val getListUsersUseCase = GetListUsersUseCase(repository)
-    private val searchUsersUseCase = SearchUsersUseCase(repository)
+    @Inject lateinit var  searchUsersUseCase : SearchUsersUseCase
 
 
 
@@ -41,6 +41,7 @@ class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel
 
     fun createUser(username: String, password: String) {
         viewModelScope.launch(IO) {
+            Log.d("TAG", "createUser: 5555555555555555")
             createUserUseCase.exec(
                      username,
                      password
@@ -63,7 +64,7 @@ class LoginViewModel @Inject constructor(repository: UserRepository) : ViewModel
         login: String,
         password: String,context: Context
     ) {
-        //Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
         //Log.d(TAG, "onViewCreated3: $users")
         if (users.isEmpty()) {
             createUser(login, password)

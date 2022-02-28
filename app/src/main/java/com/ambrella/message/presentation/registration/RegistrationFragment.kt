@@ -40,7 +40,7 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        MainActivity.inVisible(true)
+        inVisible(true)
        // var setRes=1
         mBinding.btUpdate.setOnClickListener {
 

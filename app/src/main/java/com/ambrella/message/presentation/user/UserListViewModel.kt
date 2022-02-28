@@ -14,11 +14,11 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class UserListViewModel@Inject constructor(repository: UserRepository):ViewModel() {
+class UserListViewModel@Inject constructor():ViewModel() {
         private val _usersList = MutableLiveData<List<User>>()
         val usersList: LiveData<List<User>>
         get() = _usersList
-        private val getListUsersUseCase = GetListUsersUseCase(repository)
+      @Inject  lateinit var  getListUsersUseCase : GetListUsersUseCase
         fun getUsers() {
         viewModelScope.launch {
             _usersList.value=getListUsersUseCase.exec()

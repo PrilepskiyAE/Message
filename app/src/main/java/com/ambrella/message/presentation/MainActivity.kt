@@ -37,19 +37,16 @@ class MainActivity : AppCompatActivity() {
             e.putString("userName", userNameLogin)
             e.apply()
         }
-
-        fun navigateSetup(navController:NavController){
-
-            navButton.setupWithNavController(navController)
-
-        }
-        fun getSettings(): String
-        {
-           return mSettings.getString(APP_PREFERENCES,"")?:""
-        }
-        fun inVisible(invis:Boolean)
-        {
-            navButton.isVisible=invis
-        }
+//fun navigateSetup(navController:NavController){
+// navButton.setupWithNavController(navController)
+//  }
+//        fun getSettings(): String
+//        {
+//           return mSettings.getString(APP_PREFERENCES,"")?:""
+//        }
+//        fun inVisible(invis:Boolean)
+//        {
+//            navButton.isVisible=invis
+//        }
     }
 }

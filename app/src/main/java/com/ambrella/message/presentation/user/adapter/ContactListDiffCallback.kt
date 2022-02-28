@@ -2,7 +2,7 @@ package com.ambrella.message.presentation.user.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ambrella.message.domain.entity.User
-
+//TODO если ContactItemDiffCallback правильный, то данниый класс можно удалить
 class ContactListDiffCallback(private val oldList: List<User>,private val newList: List<User>): DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
