@@ -3,9 +3,7 @@ package com.ambrella.message.domain.usecase.user
 import com.ambrella.message.domain.entity.User
 
 interface UserUseCase {
-    interface CreateUserUseCase{
-       suspend fun exec(username:String,pass: String)
-    }
+
     interface DeleteUserUseCase {
             suspend fun exec(username:String,pass: String)
     }

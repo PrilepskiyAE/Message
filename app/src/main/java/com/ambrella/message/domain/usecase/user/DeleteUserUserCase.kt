@@ -4,7 +4,7 @@ import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
 import javax.inject.Inject
 
-class DeleteUserUserCase @Inject constructor(var repository: UserRepository):UserUseCase.CreateUserUseCase {
+class DeleteUserUserCase @Inject constructor(var repository: UserRepository):UserUseCase.DeleteUserUseCase {
 //   suspend fun exec(user: User){
 //        userRepository.deleteUser(user)
 //    }

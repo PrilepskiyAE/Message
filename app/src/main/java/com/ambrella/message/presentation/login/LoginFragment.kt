@@ -1,21 +1,15 @@
 package com.ambrella.message.presentation.login
 
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.ambrella.message.R
-import com.ambrella.message.data.repository.UserRepositoryImpl
 import com.ambrella.message.databinding.FragmentLoginBinding
-import com.ambrella.message.presentation.MainActivity
 import com.ambrella.message.presentation.base.BaseFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -43,17 +37,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
         loginViewModel.searchedUsersList.observe(viewLifecycleOwner) { userlist ->
             context?.let {
-                Toast.makeText(it, "teeeest", Toast.LENGTH_SHORT).show()
+
                 loginViewModel.checkUser(
                     userlist,
                     mBinding.editPersonName.text.toString(),
                     mBinding.editpassword.text.toString(),
-                    requireContext()
+                    it
                 )
+
+
             }
         }
 
         mBinding.btLogin.setOnClickListener {
+
             if (!(mBinding.editPersonName.text.toString().trim()
                     .isNotEmpty()) || !(mBinding.editPersonName.text.toString().trim().isNotEmpty())
             ) {
@@ -62,17 +59,28 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                         .show()
                 }
 
+
             } else {
 
                 loginViewModel.searchUsers(mBinding.editPersonName.text.toString())
+                loginViewModel.stest.observe(viewLifecycleOwner){
+                   // TODO navigate проскакивает подписка(checkuser не успивает сработать) , сделал через состояние\\временно потом разбирусь че за фигня
+                    if (it){
+                       navigate(R.id.action_loginFragment_to_registrationFragment)
+                   }
+
+                }
+
 
 //            if (mBinding.checkBox2.isChecked)
 //            {
 //                //TODO Продумать логики Запомни пароль
 //                MainActivity.putSettings(mBinding.editPersonName.text.toString())
 //            }
-                navigate(R.id.action_loginFragment_to_registrationFragment)
+
+
             }
+
         }
 
         mBinding.btForgoPassword.setOnClickListener {

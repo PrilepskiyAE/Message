@@ -49,14 +49,16 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         _binding=null
     }
 
-        fun navigate( nav:Int ){
-           // val navController = Navigation.findNavController(requireView())
-           // MainActivity.navigateSetup(navController)
-            navController.navigate(nav)
+       public fun navigate( nav:Int ){
+
+               navController.navigate(nav)
         }
     fun inVisible(invis:Boolean)
       {
           navButton.isVisible=invis
        }
+
+
+
     }
 
