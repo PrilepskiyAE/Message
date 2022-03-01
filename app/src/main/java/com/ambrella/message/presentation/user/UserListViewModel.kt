@@ -5,12 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ambrella.message.domain.entity.User
-import com.ambrella.message.domain.repository.UserRepository
-import com.ambrella.message.domain.usecase.user.GetListUsersUseCase
+import com.ambrella.message.domain.usecase.user.getlistusers.GetListUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel

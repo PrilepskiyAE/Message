@@ -33,6 +33,7 @@ class ContactListAdapter : ListAdapter<User, UserViewHolder>(ContactItemDiffCall
             onUserClickLisener?.invoke(user)
 
         }
+        holder.init(user)
     }
     //var onUserClickLisener: OnUserClickLisener? = null
     var onUserClickLisener: ((User) -> Unit)? = null

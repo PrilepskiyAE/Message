@@ -1,11 +1,11 @@
-package com.ambrella.message.domain.usecase.user
+package com.ambrella.message.domain.usecase.user.searchuseres
 
-import android.util.Log
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
+
 import javax.inject.Inject
 
 
-class SearchUsersUseCase @Inject constructor(var repository: UserRepository):UserUseCase.SearchUsersUseCase {
+class SearchUsersUseCaseImpl @Inject constructor(var repository: UserRepository): SearchUsersUseCase {
     override suspend fun exec(username:String): List<User> = repository.searchUsers(username)
 }

@@ -1,10 +1,10 @@
-package com.ambrella.message.domain.usecase.user
+package com.ambrella.message.domain.usecase.user.deleteuser
 
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
 import javax.inject.Inject
 
-class DeleteUserUserCase @Inject constructor(var repository: UserRepository):UserUseCase.DeleteUserUseCase {
+class DeleteUserUseCaseImpl @Inject constructor(var repository: UserRepository):DeleteUserUseCase {
 //   suspend fun exec(user: User){
 //        userRepository.deleteUser(user)
 //    }

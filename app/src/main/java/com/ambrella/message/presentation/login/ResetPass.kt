@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResetPass:  DialogFragment() {
-    private val loginViewModel: LoginViewModel by viewModels()
+    //private val loginViewModel: LoginViewModel by viewModels()
     private var _binding: ResetPassBinding? = null
     private val mBinding get() = _binding ?: throw RuntimeException("Diolog error")
 
@@ -38,9 +38,14 @@ class ResetPass:  DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val callback = requireArguments().getParcelable<ResetPassHelperCallback>("Callback")!!
+
+       val personName:String= callback.userName
+        mBinding.editPersonName.setText(personName)
+
         mBinding.btUpdate.setOnClickListener {
             Log.d("TAG", "onViewCreated: ")
-            if (!(mBinding.editPersonName.text.toString().trim().isNotEmpty()) || !(mBinding.editPersonName.text.toString().trim().isNotEmpty()))
+            if (!(mBinding.editPersonName.text.toString().trim().isNotEmpty()) || !(mBinding.editpassword.text.toString().trim().isNotEmpty()))
             {
                context?.let {
                    Toast.makeText(it, getString(R.string.fill_in_the_fields), Toast.LENGTH_SHORT).show()
@@ -48,9 +53,11 @@ class ResetPass:  DialogFragment() {
 
             }
             else{
-                Toast.makeText(requireContext(), "Пароль успешно изменен", Toast.LENGTH_SHORT).show()
-                loginViewModel.createUser(mBinding.editPersonName.text.toString(),mBinding.editpassword.text.toString())
-                dismiss() //TODO подумаю как его закрыть
+                Toast.makeText(requireContext(), "Пoльзователь успешно изменен", Toast.LENGTH_SHORT).show()
+
+                //  loginViewModel.updateUser(loginViewModel.currenuser.value!!.id,mBinding.editPersonName.text.toString(),mBinding.editpassword.text.toString())
+                callback.resetAction.invoke(mBinding.editpassword.text.toString())
+                dismiss()
         }
         }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.ambrella.message.R
 import com.ambrella.message.databinding.FragmentLoginBinding
@@ -18,18 +19,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private val loginViewModel: LoginViewModel by viewModels()
 
 
-    //      private var _binding: FragmentLoginBinding? = null
-//       private val mBinding get() = _binding ?: throw RuntimeException("Main fragment error")
-
-
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        _binding=FragmentLoginBinding.inflate(layoutInflater,container,false)
-//        return mBinding.root
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +41,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         mBinding.btLogin.setOnClickListener {
 
             if (!(mBinding.editPersonName.text.toString().trim()
-                    .isNotEmpty()) || !(mBinding.editPersonName.text.toString().trim().isNotEmpty())
+                    .isNotEmpty()) || !(mBinding.editpassword.text.toString().trim().isNotEmpty())
             ) {
                 context?.let {
                     Toast.makeText(it, getString(R.string.fill_in_the_fields), Toast.LENGTH_SHORT)
@@ -84,7 +73,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
 
         mBinding.btForgoPassword.setOnClickListener {
-            ResetPass().show(requireActivity().supportFragmentManager, "ResetPass")
+
+            ResetPass().apply {
+                arguments = bundleOf(
+                    "Callback" to ResetPassHelperCallback(mBinding.editPersonName.text.toString()) {
+                        loginViewModel.updateUser(loginViewModel.currenuser.value!!.id,mBinding.editPersonName.text.toString(), it)
+                    }
+                )
+            }.show(requireActivity().supportFragmentManager, "ResetPass")
         }
 
     }
