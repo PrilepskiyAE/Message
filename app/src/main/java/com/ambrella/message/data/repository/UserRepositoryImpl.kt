@@ -6,13 +6,13 @@ import com.ambrella.message.data.db.DaoUser
 import com.ambrella.message.data.db.MapperUser
 import com.ambrella.message.data.db.RoomDatabaseMessage
 import com.ambrella.message.data.entity.Sharedpref
+import com.ambrella.message.domain.entity.Messages
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.repository.UserRepository
 import javax.inject.Inject
-
+//Богдан посоветовал все в один репоситорий сделать
 class UserRepositoryImpl @Inject constructor(db:RoomDatabaseMessage):UserRepository {
     private val mapper=MapperUser()
-
     private val daoUser: DaoUser=db.daoUser()
 
     override suspend fun createUser(user: User) {
@@ -35,6 +35,22 @@ class UserRepositoryImpl @Inject constructor(db:RoomDatabaseMessage):UserReposit
     }
 
     override suspend fun searchUsers(username: String)= mapper.mapListDbModelToListEntity(daoUser.searchUser(username))
+
+    override suspend fun createMessage(message: Messages) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteMessage(message: Messages) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMessage(user: User, user2: User): List<Messages> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateMessage(message: Messages) {
+        TODO("Not yet implemented")
+    }
 
     override fun getId(context: Context):Int {
        return Sharedpref.getId(context)

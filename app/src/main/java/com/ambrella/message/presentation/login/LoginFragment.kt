@@ -2,11 +2,14 @@ package com.ambrella.message.presentation.login
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.ambrella.message.R
 import com.ambrella.message.databinding.FragmentLoginBinding
@@ -23,7 +26,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inVisible(false)
-
+        mBinding.editPersonName.setText(loginViewModel.getUserNameUseCase.exec(requireContext()))
+        mBinding.btForgoPassword.isVisible=false
         loginViewModel.searchedUsersList.observe(viewLifecycleOwner) { userlist ->
             context?.let {
 
@@ -61,24 +65,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
 
 
-//            if (mBinding.checkBox2.isChecked)
-//            {
-//                //TODO Продумать логики Запомни пароль
-//                MainActivity.putSettings(mBinding.editPersonName.text.toString())
-//            }
+           if (mBinding.checkBox2.isChecked)
+           {
+             loginViewModel.setUserNameUseCase.exec(mBinding.editPersonName.text.toString(),requireContext())
+           }
 
 
             }
+            mBinding.btForgoPassword.isVisible=true
 
         }
 
         mBinding.btForgoPassword.setOnClickListener {
-
+            Log.d("TAG", "onViewCreated: ${loginViewModel.getIdUserUseCase.exec(requireContext())}")
             ResetPass().apply {
                 arguments = bundleOf(
                     "Callback" to ResetPassHelperCallback(mBinding.editPersonName.text.toString()) {
-                        loginViewModel.updateUser(loginViewModel.currenuser.value!!.id,mBinding.editPersonName.text.toString(), it)
-                    }
+                        loginViewModel.createUser(loginViewModel.getIdUserUseCase.exec(requireContext()),mBinding.editPersonName.text.toString(), it)
+                         }
                 )
             }.show(requireActivity().supportFragmentManager, "ResetPass")
         }

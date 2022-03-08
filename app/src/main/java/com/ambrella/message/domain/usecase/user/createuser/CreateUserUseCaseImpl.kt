@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class CreateUserUseCaseImpl @Inject constructor(var repository: UserRepository): CreateUserUseCase {
 
-    override suspend fun exec(username:String,pass: String) {
-        repository.createUser(User(username = username, password = pass))
+    override suspend fun exec(id:Int,username:String,pass: String) {
+        repository.createUser(User(id = id, username = username, password = pass))
     }
 }

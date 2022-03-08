@@ -8,8 +8,12 @@ import androidx.lifecycle.*
 import com.ambrella.message.R
 import com.ambrella.message.domain.entity.User
 import com.ambrella.message.domain.usecase.user.createuser.CreateUserUseCase
+import com.ambrella.message.domain.usecase.user.getiduser.GetIdUserUseCase
 import com.ambrella.message.domain.usecase.user.getuser.GetUserUseCase
+import com.ambrella.message.domain.usecase.user.getusername.GetUserNameUseCase
 import com.ambrella.message.domain.usecase.user.searchuseres.SearchUsersUseCase
+import com.ambrella.message.domain.usecase.user.setiduser.SetIdUserUseCase
+import com.ambrella.message.domain.usecase.user.setusername.SetUserNameUseCase
 import com.ambrella.message.domain.usecase.user.updateuser.UpdateUserUseCase
 import com.ambrella.message.presentation.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +29,10 @@ class LoginViewModel @Inject constructor() : ViewModel() {
    // private val getListUsersUseCase = GetListUsersUseCase(repository)
     @Inject lateinit var  searchUsersUseCase : SearchUsersUseCase
     @Inject lateinit var updateUserUseCase: UpdateUserUseCase
+    @Inject lateinit var setUserNameUseCase: SetUserNameUseCase
+    @Inject lateinit var setIdUserUseCase : SetIdUserUseCase
+    @Inject lateinit var getUserNameUseCase: GetUserNameUseCase
+    @Inject lateinit var getIdUserUseCase: GetIdUserUseCase
 
 
 
@@ -41,9 +49,11 @@ private val _stest = SingleLiveEvent<Boolean>()
     val searchedUsersList: LiveData<List<User>>
         get() = _searchedUsersList
 
-    fun createUser(username: String, password: String) {
+    fun createUser(id: Int=0,username: String, password: String) {
         viewModelScope.launch(IO) {
             createUserUseCase.exec(
+
+                        id,
                      username,
                      password
             )
@@ -76,16 +86,15 @@ private val _stest = SingleLiveEvent<Boolean>()
         login: String,
         password: String, context: Context,
     ) {
-      //  Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
-        //Log.d(TAG, "onViewCreated3: $users")
         if (users.isEmpty()) {
-            createUser(login, password)
-         //   Log.d(TAG, "onViewCreated5: $users")
+            createUser(username=login, password=password)
+
             Toast.makeText(context, context.getString(R.string.create_user), Toast.LENGTH_SHORT).show()
             _stest.value=true
-            //_currentuser.value= users.
+          //  Log.d("TAG", "onViewCreated6: ${users[0].username}")
+           // _searchedUsersList.value?.get(0)?.let { setUserNameUseCase.exec(it.username,context) }
+            _searchedUsersList.value?.get(0)?.let { setIdUserUseCase.exec(it.id,context) }
 
-            
         } else {
         //    Log.d(TAG, "onViewCreated6: $users")
             if (users[0].username == login && users[0].password == password) {
@@ -93,6 +102,8 @@ private val _stest = SingleLiveEvent<Boolean>()
                Toast.makeText(context, context.getString(R.string.user_check), Toast.LENGTH_SHORT).show()
                 _stest.value=true
                 _currentuser.value=users[0]
+                Log.d("TAG", "onViewCreated6: ${users[0].username}")
+                setIdUserUseCase.exec(users[0].id,context)
 
 
             } else {
